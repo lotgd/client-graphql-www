@@ -17,5 +17,3 @@ ReactDOM.render(
   />,
   document.getElementById('root')
 );
-
-alert("This gets executed");
