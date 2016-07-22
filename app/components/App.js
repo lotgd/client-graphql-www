@@ -1,18 +1,47 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-class App extends React.Component {
-  render() {
-      console.log(this.props)
-    return (
-        <div>
-            <h1>Daenerys Web Client</h1>
+import Configuration from './Configuration';
+
+var Title = React.createClass({
+    render() {
+        return (
+            <h1>{this.props.val}</h1>
+        );
+    }
+});
+
+var Connection = React.createClass({
+   render() {
+        return (
             <div>
-                Currently connected to <strong>{this.props.viewer.name}</strong> at <emph>{this.props.viewer.url}</emph>
+                Connected to {this.props.name}.
             </div>
-        </div>
-    );
-  }
+        );
+   } 
+});
+
+class App extends React.Component {
+    render() {
+        var Realm = this.props.viewer;
+        
+        return (
+            <div>
+                <Title val="Daenerys Web client" />
+                <Connection name={Realm.name} />
+                
+                
+                <Configuration
+                    type="core"
+                    Lib={Realm.configuration.core}
+                />
+                <Configuration
+                    type="crate"
+                    Lib={Realm.configuration.crate}
+                />
+            </div>
+        );
+    }
 }
 
 export default Relay.createContainer(App, {
@@ -20,6 +49,11 @@ export default Relay.createContainer(App, {
         viewer: () => Relay.QL`
             fragment on Realm {
                 name
+                url
+                configuration {
+                    core {${Configuration.getFragment('Lib')}}
+                    crate {${Configuration.getFragment('Lib')}}
+                }
             }
         `,
     },
