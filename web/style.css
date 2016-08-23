@@ -1,0 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,400italic,700&subset=latin,latin-ext);
+
+body {
+    font-family: "Roboto Condensed", "Helvetica", sans-serif;
+    font-size: 12px;
+    
+    background-color: black;
+    color: white;
+    
+    margin: 0em;
+    padding: 0em;
+}
+
+#root header {
+    border-bottom: 1px solid grey;
+    
+    background-color: white;
+    color: black;
+    
+    text-align: center;
+}
+
+header h1 {
+    margin-top: 0em;
+    padding-top: 0.5em;
+    margin-bottom: -0.2em;
+    
+    font-weight: bold;
+    font-size: 3em;
+}
+
+#content {
+    height: 100%;
+    background-color: white;
+    color: black;
+}
+
+#root > div > footer {
+    
+}
+
+h2 {
+    font-size: 2em;
+}
+
+.login-prompt {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0em;
+    overflow: hidden;
+    
+    border: 1px solid black;
+    border-radius: 2em;
+}
+
+.login-prompt h2 {
+    margin: 0;
+    margin-bottom: 1em;
+    border-bottom: 1px solid black;
+    padding: 0.5em 1em;
+    
+    background-color: green;
+    color: white;
+}
+
+.login-prompt h2 ~ h2 {
+    margin-top: 2em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
