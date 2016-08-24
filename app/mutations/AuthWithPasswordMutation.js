@@ -1,6 +1,19 @@
 import Relay from 'react-relay';
 
 export default class AuthWithPasswordMutation extends Relay.Mutation {
+    static fragments = {
+        session: () => Relay.QL`
+            fragment on Session {
+                apiKey,
+                expiresAt,
+                user {
+                    id,
+                    name
+                }
+            }
+        `,
+    };
+    
     getMutation() {
         return Relay.QL`mutation {authWithPassword}`;
     }
@@ -15,19 +28,32 @@ export default class AuthWithPasswordMutation extends Relay.Mutation {
     getFatQuery() {
         return Relay.QL`
             fragment on AuthWithPasswordPayload {
-                apiKey,
-                expiresAt
+                session
             }
         `;
     }
     
     getConfigs() {
-        return [{
+        /*return [{
            type: 'FIELDS_CHANGE',
            fieldIDs: {
-               apiKey: this.props.apiKey,
-               expiresAt: this.props.expiresAt
+               session: this.props.session,
            }
+        }];*/
+        return [{
+           type: 'REQUIRED_CHILDREN',
+           children: [Relay.QL`
+                fragment on AuthWithPasswordPayload {
+                    session {
+                        apiKey,
+                        expiresAt,
+                        user { 
+                            id,
+                            name
+                        }
+                    }
+                }
+            `]
         }];
     }
 }
