@@ -11,16 +11,16 @@ const Session = React.createClass({
     setApiKeyInRelayHeader(apiKey) {
         window.NetworkLayer.setToken(apiKey);
     },
-    
+
     getInitialState() {
         return {
             session: this.props.session
         };
     },
-    
+
     render() {
-        var Session = this.props.session;
-        
+        var Session = this.state.session;
+
         if (Session.user === null) {
             return (
                 <div>
@@ -45,7 +45,7 @@ const Session = React.createClass({
 });
 
 export default Relay.createContainer(Session, {
-    fragments: {            
+    fragments: {
         session: () => Relay.QL`
             fragment on Session {
                 apiKey,
