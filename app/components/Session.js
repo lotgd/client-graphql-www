@@ -4,6 +4,7 @@ import Relay from 'react-relay';
 import Configuration from './Configuration';
 import Offline from './Offline';
 import Online from './Online';
+import UserRoute from '../routes/UserRoute';
 
 import AuthWithPasswordMutation from '../mutations/AuthWithPasswordMutation';
 
@@ -23,25 +24,31 @@ const Session = React.createClass({
 
         if (Session.user === null) {
             return (
-                <div>
-                    <Offline
-                        parent={this}
-                        session={Session}
-                    />
-                </div>
+                <Offline
+                    parent={this}
+                    session={Session}
+                />
             );
         }
         else {
+            var userRoute = new UserRoute({userID: this.state.session.user.id});
+
             return (
-                <div>
-                    <Online
-                        parent={this}
-                        session={Session}
-                     />
-                </div>
+                <Relay.RootContainer
+                    Component={Online}
+                    route={userRoute}
+                    renderFetched={data =>
+                        <Online
+                            {...data}
+                            parent={this}
+                            session={Session}
+                            userid={Session.user.id}
+                         />
+                    }
+                />
             );
         }
-    }
+    },
 });
 
 export default Relay.createContainer(Session, {

@@ -83,3 +83,69 @@ h2 {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
+
+.daenerys-dialog {
+    border: 1px solid black;
+}
+
+.daenerys-dialog h2 {
+    margin: 0;
+    margin-bottom: 1em;
+    border-bottom: 1px solid black;
+    padding: 0.5em 1em;
+
+    background-color: green;
+    color: white;
+}
+
+.daenerys-list-widget {
+    padding: 1em 0em;
+    padding-left: 1em;
+}
+
+.daenerys-list-item-widget {
+    margin: 1em 1em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    height: 3em;
+    clear: both;
+}
+
+.daenerys-list-item-widget img {
+    position: relative;
+    left: -1em;
+    top: -1em;
+    float: left;
+
+    width: 5em;
+    height: 5em;
+    border: 1px solid black;
+    border-radius: 2.5em;
+    background-color: white;
+}
+
+.daenerys-list-item-widget h3 {
+    font-size: 1.5em;
+    margin-top: 0em;
+}
+
+.daenerys-add {
+    width: 2em;
+    height: 2em;
+    margin: 0 auto;
+
+
+    border-radius: 1em;
+    border: 1px solid green;
+    background-color: green;
+
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.daenerys-add:hover {
+    border: 1px solid black;
+}

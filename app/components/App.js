@@ -9,18 +9,26 @@ import SessionRoute from './../routes/SessionRoute';
 
 import AuthWithPasswordMutation from '../mutations/AuthWithPasswordMutation';
 
-var Title = React.createClass({
+function Title(props) {
+    return <h1>{props.val}</h1>;
+}
+
+function Connection(props) {
+    return <div>Connected to {props.name}</div>
+}
+
+/*var Title = React.createClass({
     render() { return (<h1>{this.props.val}</h1>); }
 });
 
 var Connection = React.createClass({
-    render() { return (<div>Connected to {this.props.name}.</div>); } 
-});
+    render() { return (<div>Connected to {this.props.name}.</div>); }
+});*/
 
-const App = React.createClass({       
+const App = React.createClass({
     render() {
         var Realm = this.props.realm;
-        
+
         return (
             <div id="app">
                 <header className="w3-container">
@@ -34,7 +42,7 @@ const App = React.createClass({
                         route={new SessionRoute()}
                     />
                 </div>
-                
+
                 <footer className="wrapper-bottom">
                     <Configuration
                         type="core"
@@ -51,7 +59,7 @@ const App = React.createClass({
 });
 
 export default Relay.createContainer(App, {
-    fragments: {            
+    fragments: {
         realm: () => Relay.QL`
             fragment on Realm {
                 name

@@ -69,7 +69,7 @@ var Offline = React.createClass({
                         ? this.state.error
                                 ? <div>Login was not possible.</div>
                                 : <div>Login in, please wait.</div>
-                        : <div>Try to login using your email/password!</div>
+                        : <div>Login using your email and password</div>
                     }
                     <div className="w3-container">
                         <label>E-Mail address</label>
@@ -87,7 +87,7 @@ var Offline = React.createClass({
                             type="password"
                             name="password"
                             value={this.state.password}
-                            onChange={this.handleChange.bind(this, 'email')}
+                            onChange={this.handleChange.bind(this, 'password')}
                         />
 
                         <button className="w3-button" onClick={this.handleSubmission}>Log in</button>
