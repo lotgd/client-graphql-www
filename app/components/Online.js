@@ -58,10 +58,21 @@ export default Relay.createContainer(Online, {
             fragment on User {
                 id
                 name
-                characters {
-                    id
-                    name
-                    displayName
+                characters(first: 20) {
+                    pageInfo {
+                        hasNextPage,
+                        hasPreviousPage,
+                        startCursor,
+                        endCursor,
+                    },
+                    edges {
+                        cursor
+                        node {
+                            id
+                            name
+                            displayName
+                        }
+                    }
                 }
             }
         `

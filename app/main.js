@@ -14,6 +14,9 @@ var root = document.getElementById('root');
 window.NetworkLayer = new LoGDNetworkLayer('http://localhost:8000/');
 Relay.injectNetworkLayer(window.NetworkLayer);
 
+/**
+ * Render the root elemtent
+ */
 ReactDOM.render(
     <Relay.RootContainer
         Component={App}

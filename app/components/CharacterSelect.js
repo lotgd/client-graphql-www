@@ -3,6 +3,11 @@ import Relay from 'react-relay';
 
 import CreateCharacterMutation from '../mutations/CreateCharacterMutation';
 
+/**
+ * The button to display or hide the character creation form.
+ * @param {type} props
+ * @returns {Function|String}
+ */
 function CreationButton(props) {
     if (props.toggle) {
         return (
@@ -15,6 +20,11 @@ function CreationButton(props) {
     }
 }
 
+/**
+ * A single character entry in the list of characters.
+ * @param {type} props
+ * @returns {Function|String}
+ */
 function CharacterEntry(props) {
     return (
         <div className="daenerys-list-item-widget">
@@ -75,13 +85,26 @@ var CreationForm = React.createClass({
 });
 
 var CharacterSelect = React.createClass({
+    /**
+     * @ToDo: Set the current character globally.
+     * @param {type} characterId
+     * @returns {undefined}
+     */
     activateCharacter: function(characterId) {
     },
 
+    /**
+     * Toggles the creation form button.
+     * @returns {undefined}
+     */
     showCreationForm: function() {
         this.setState({showCreationForm: !this.state.showCreationForm});
     },
 
+    /**
+     * Initial state.
+     * @returns {CharacterSelectAnonym$3.getInitialState.CharacterSelectAnonym$5}
+     */
     getInitialState: function() {
         return {
             showCreationForm: false,
@@ -89,6 +112,12 @@ var CharacterSelect = React.createClass({
         };
     },
 
+    /**
+     * Event upon pressind the character creation button.
+     * @param {type} creationForm
+     * @param {type} characterName
+     * @returns {undefined}
+     */
     onCharacterCreation: function(creationForm, characterName) {
         console.log("Releasing mutation with");
         console.log(characterName);
@@ -107,6 +136,12 @@ var CharacterSelect = React.createClass({
         this.setState({submitted: true});
     },
 
+    /**
+     * Event upon the character creation failes.
+     * @param {type} creationForm
+     * @param {type} characterName
+     * @returns {undefined}
+     */
     onCharacterCreationError: function(creationForm, characterName) {
         this.setState({
             errormessage: "The character with the name " + characterName + " already exists",
@@ -116,6 +151,12 @@ var CharacterSelect = React.createClass({
         console.log("Character with the name " + characterName + " was NOT created. Error.");
     },
 
+    /**
+     * Event upon the character creation succeeds.
+     * @param {type} creationForm
+     * @param {type} characterName
+     * @returns {undefined}
+     */
     onCharacterCreationSuccess: function(creationForm, characterName) {
         creationForm.setState(creationForm.getInitialState());
         this.setState({
@@ -127,12 +168,16 @@ var CharacterSelect = React.createClass({
         this.props.relay.forceFetch();
     },
 
+    /**
+     * Render information.
+     * @returns {String|Boolean}
+     */
     render: function() {
         var showCreationForm = false;
         var characterList = "";
         var noCharacterMessage = "";
 
-        if (this.props.user.characters.length === 0) {
+        if (this.props.user.characters.edges.length === 0) {
             showCreationForm = true;
             noCharacterMessage = "You seem to not have any characters yet. Click \n\
                 on the button to create one.";
@@ -150,20 +195,20 @@ var CharacterSelect = React.createClass({
                         <h2>Character selection</h2>
 
 
-                        {this.props.user.characters.length > 0 &&
+                        {this.props.user.characters.edges.length > 0 &&
                             <div className="daenerys-list-widget">
-                                {this.props.user.characters.map((entry) => {
+                                {this.props.user.characters.edges.map((entry) => {
                                     return <CharacterEntry
-                                        key={entry.id}
-                                        id={entry.id}
-                                        displayName={entry.displayName}
+                                        key={entry.node.id}
+                                        id={entry.node.id}
+                                        displayName={entry.node.displayName}
                                         onClick={this.activateCharacter}
                                     />;
                                 })}
                             </div>
                         }
 
-                        {this.props.user.characters.length > 0 && <CreationButton onClick={this.showCreationForm} toggle={this.state.showCreationForm} />}
+                        {this.props.user.characters.edges.length > 0 && <CreationButton onClick={this.showCreationForm} toggle={this.state.showCreationForm} />}
 
                         {showCreationForm === true && <CreationForm onSubmission={this.onCharacterCreation} />}
                     </div>
