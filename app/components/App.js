@@ -17,14 +17,6 @@ function Connection(props) {
     return <div>Connected to {props.name}</div>
 }
 
-/*var Title = React.createClass({
-    render() { return (<h1>{this.props.val}</h1>); }
-});
-
-var Connection = React.createClass({
-    render() { return (<div>Connected to {this.props.name}.</div>); }
-});*/
-
 const App = React.createClass({
     render() {
         var Realm = this.props.realm;

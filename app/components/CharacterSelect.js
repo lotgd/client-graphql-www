@@ -9,15 +9,11 @@ import CreateCharacterMutation from '../mutations/CreateCharacterMutation';
  * @returns {Function|String}
  */
 function CreationButton(props) {
-    if (props.toggle) {
-        return (
-            <div className="daenerys-add" onClick={() => {props.onClick();}}>^</div>
-        );
-    } else {
-        return (
-            <div className="daenerys-add" onClick={() => {props.onClick();}}>+</div>
-        );
-    }
+    const content = props.toggle ? "^" : "+";
+
+    return (
+        <div className="daenerys-add" onClick={() => {props.onClick();}}>{content}</div>
+    );
 }
 
 /**
@@ -137,7 +133,7 @@ var CharacterSelect = React.createClass({
     },
 
     /**
-     * Event upon the character creation failes.
+     * Event upon the character creation fails.
      * @param {type} creationForm
      * @param {type} characterName
      * @returns {undefined}

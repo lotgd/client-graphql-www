@@ -5,20 +5,11 @@ class Configuration extends React.Component {
     render() {
         var lib = this.props.Lib;
         var type = this.props.type;
-        
-        if (type === "core") {
-            return (
-                <div>Core: Using {lib.library} in version {lib.version}</div>
-            );
-        } else if (type === "crate") {
-            return (
-                <div>Crate: Using {lib.library} in version {lib.version}</div>
-            );
-        } else {
-             return (
-                <div>Library: Using {lib.library} in version {lib.version}</div>
-            );
-        }
+        const type_string = (type === "core" ? "Core" : (type === "crate" ? "Crate" : "Library"));
+
+        return (
+            <div>{type_string}: Using {lib.library} in version {lib.version}</div>
+        );
     }
 }
 
