@@ -87,6 +87,8 @@ var CharacterSelect = React.createClass({
      * @returns {undefined}
      */
     activateCharacter: function(characterId) {
+        console.log("Activating character with id " + characterId);
+        this.props.parent.setActiveCharacter(characterId);
     },
 
     /**
@@ -115,10 +117,6 @@ var CharacterSelect = React.createClass({
      * @returns {undefined}
      */
     onCharacterCreation: function(creationForm, characterName) {
-        console.log("Releasing mutation with");
-        console.log(characterName);
-        console.log(this.props.user);
-
         this.props.relay.commitUpdate(
             new CreateCharacterMutation({
                 characterName: characterName,
@@ -161,7 +159,6 @@ var CharacterSelect = React.createClass({
         });
 
         console.log("Character with the name " + characterName + " was created.");
-        this.props.relay.forceFetch();
     },
 
     /**
