@@ -2,6 +2,8 @@ import React from 'react';
 import Relay from 'react-relay';
 
 import CharacterSelect from './CharacterSelect';
+import Viewpoint from './Viewpoint';
+import ViewpointRoute from '../routes/ViewpointRoute';
 
 var Online = React.createClass({
     /**
@@ -54,6 +56,12 @@ var Online = React.createClass({
         var Session = this.props.session;
         var User = this.props.user;
 
+        if (this.state.dialogDisplayed === false) {
+            var viewpointRoute = new ViewpointRoute({characterId: this.state.characterId});
+        } else {
+            var viewpointRoute = null;
+        }
+
         return (
             <div className="scene">
                 <menu className="w3-navbar w3-dark-grey">
@@ -70,22 +78,21 @@ var Online = React.createClass({
                 }
 
                 {this.state.dialogDisplayed === false &&
-                    <div className="w3-row">
-                        <div className="characterActions w3-col l3 m2">
-                            Actions
-                        </div>
-                        <div className="characterScene w3-col l6 m8">
-                            CharacterScene
-                        </div>
-                        <div className="characterStats w3-col l3 m2">
-                            CharacterStats
-                        </div>
-                    </div>
+                    <Relay.RootContainer
+                        Component={Viewpoint}
+                        route={viewpointRoute}
+                        renderFetched={data =>
+                            <Viewpoint
+                                {...data}
+                                parent={this}
+                                characterId={this.state.characterId}
+                             />
+                        }
+                    />
                 }
             </div>
         );
    }
-
 });
 
 export default Relay.createContainer(Online, {

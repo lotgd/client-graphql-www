@@ -58,6 +58,35 @@ h2 {
     font-size: 2em;
 }
 
+/**
+ * Viewpoint
+ */
+#viewpoint {
+
+}
+
+#viewpoint-actions {
+}
+
+#viewpoint-actions nav {
+}
+
+#viewpoint-actions nav span.action-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#viewpoint-actions nav a {
+    display: block;
+    padding-left: 1em;
+    text-decoration: none;
+}
+
+#viewpoint-actions nav a:hover {
+    text-decoration: underline;
+}
+
 .login-prompt {
     margin-top: 2em;
     margin-bottom: 2em;
