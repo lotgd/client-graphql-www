@@ -1,4 +1,41 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
+import {graphql} from 'react-apollo';
+import RealmQuery from './../queries/RealmQuery.graphql';
+
+import Header from './parts/Header.js';
+
+@graphql(RealmQuery)
+class App extends Component {
+    static propTypes = {
+        data: PropTypes.shape({
+            loading: PropTypes.bool.isRequired,
+            realm: PropTypes.object,
+        }).isRequired,
+    };
+
+    render() {
+        if (this.props.data.loading) {
+            return <div>Loading...</div>
+        }
+
+        if (this.props.data.error) {
+            console.log(this.props.data.error);
+            return <div>An error occured!</div>
+        }
+
+
+        return <div id="app">
+            <Header
+                title="Daenerys Web Client"
+                realm={this.props.data.realm.name}
+            />
+        </div>;
+    }
+};
+
+export default App;
+
+/*import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 
@@ -63,4 +100,4 @@ export default Relay.createContainer(App, {
             }
         `,
     },
-});
+});*/

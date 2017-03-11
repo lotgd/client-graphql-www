@@ -1,5 +1,19 @@
 import 'babel-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {ApolloProvider} from 'react-apollo';
 
+import LotgdClient from './../src/LotgdClient'
+import App from './components/App';
+
+ReactDOM.render(
+    <ApolloProvider  client={LotgdClient}>
+        <App />
+    </ApolloProvider>,
+    document.getElementById("root")
+);
+
+/*
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
@@ -16,11 +30,11 @@ Relay.injectNetworkLayer(window.NetworkLayer);
 
 /**
  * Render the root elemtent
- */
+ *//*
 ReactDOM.render(
     <Relay.RootContainer
         Component={App}
         route={new AppHomeRoute()}
     />,
     document.getElementById('root')
-);
+);*/

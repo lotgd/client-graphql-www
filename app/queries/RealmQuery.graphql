@@ -1,0 +1,15 @@
+{
+    realm {
+        name
+        url,
+        configuration {
+            core { ...Lib }
+            crate { ...Lib }
+        }
+    }
+}
+
+fragment Lib on Library {
+    library
+    version
+}
