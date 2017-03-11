@@ -2,7 +2,8 @@
   "name": "lotgd_crate_www_jsclient",
   "version": "0.1.0",
   "scripts": {
-    "build": "./node_modules/.bin/webpack app/main.js -o web/bundle.js",
+    "build": "./node_modules/.bin/webpack app/main.js -o web/bundle.js && ./node_modules/.bin/node-sass --output-style compressed app/style.scss > web/style.css",
+    "build-sass": "./node_modules/.bin/node-sass --output-style compressed app/style.scss > web/style.css",
     "update-schema": "./node_modules/.bin/babel-node update-schema.js --plugins transform-async-to-generator"
   },
 
@@ -31,6 +32,7 @@
     "babel-relay-plugin": "^0.10",
     "sync-request": "^3.0.1",
     "webpack": "^1.13.1",
-    "graphql-tag": "^1.3"
+    "graphql-tag": "^1.3",
+    "node-sass": "*"
   }
 }

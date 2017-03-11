@@ -1,0 +1,89 @@
+$bg-color1: #006600;
+$fg-color1: #DDDDDD;
+$bg-color2: #000000;
+$fg-color2: #DDDDDD;
+
+body {
+  font-size: 14px;
+  background-color: $bg-color2;
+  color: $fg-color1;
+}
+
+#loading {
+  padding: 2em;
+
+  p {
+    width: 33%;
+    height: 10em;
+    margin: auto;
+
+    border: 1px solid $fg-color2;
+    border-radius: 1em;
+    padding: 3em;
+
+    text-align: center;
+  }
+}
+
+#error {
+
+}
+
+#app {
+  .app-header {
+    padding: 2em;
+
+    background-color: $bg-color1;
+    color: $fg-color1;
+    text-align: center;
+
+    font-weight: bold;
+
+    h1 {
+      font-size: 2em;
+    }
+
+    div {
+      font-size: 1em;
+    }
+  }
+
+  .app-footer {
+
+    dl {
+      overflow: visible;
+      padding: 2em;
+
+      background-color: $bg-color2;
+      color: $fg-color2;
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      dt {
+        min-width: 10em;
+        float: left;
+        clear: left;
+
+        font-weight: bold;
+
+        &::after {
+          content: ":";
+        }
+      }
+
+      dd {
+      }
+    }
+  }
+}
+
+.d-message {
+
+}
+
+.d-message-error {
+  font-color: red;
+}
