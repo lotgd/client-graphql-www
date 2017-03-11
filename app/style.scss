@@ -2,6 +2,8 @@ $bg-color1: #006600;
 $fg-color1: #DDDDDD;
 $bg-color2: #000000;
 $fg-color2: #DDDDDD;
+$bg-color3: #DDDDDD;
+$fg-color3: #333333;
 
 body {
   font-size: 14px;
@@ -77,6 +79,12 @@ body {
       dd {
       }
     }
+  }
+
+  .app-sessionView {
+    padding: 2em;
+    background-color: $bg-color3;
+    color: $fg-color3;
   }
 }
 
