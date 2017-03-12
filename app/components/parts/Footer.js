@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * This part is responsible for rendering the lower part of the website with copyright etc
+ */
 class Footer extends React.Component {
     render() {
         const core = this.props.configuration.core;

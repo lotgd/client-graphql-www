@@ -15,6 +15,7 @@ networkInterface.use([{
 
         // Set header if token exists
         if (token) {
+            console.log("Token found! It's " + token);
             req.options.headers.token = token;
         }
 

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {graphql} from 'react-apollo';
 
 import Offline from './Offline';
+import Online from './Online';
 
 import AuthWithPasswordMutation from './../mutations/AuthWithPasswordMutation.graphql';
 
@@ -9,14 +10,18 @@ import AuthWithPasswordMutation from './../mutations/AuthWithPasswordMutation.gr
 class SessionView extends Component {
     static propTypes = {
         app: PropTypes.object.isRequired,
-        authWithPassword: PropTypes.func.isRequired
+        authWithPassword: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired,
+        setSession: PropTypes.func.isRequired,
+        user: PropTypes.object,
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            message: null
+            message: null,
+            error: false,
         };
     }
 
@@ -31,24 +36,46 @@ class SessionView extends Component {
                         password: data["password"],
                     }
                 }
-            }).then((data) => {
-                this.setState({message: "Login successful", error: false})
-            }).catch((error) => {
-                this.setState({message: "Login failed", error: true})
-            });
+            }).then(
+                this.onLoginSuccess.bind(this)
+            ).catch(
+                this.onLoginFailure.bind(this)
+            );
         } else {
-            console.log("Attempt social login");
+            // @ToDo: implement later the social login
+            console.log("Attempt social login - not implemented yet.");
         }
     }
 
+    onLoginSuccess(data) {
+        this.setState({message: "Login was successful", error: false})
+        this.props.setSession(data["data"]["authWithPassword"]["session"]);
+    }
+
+    onLoginFailure(error) {
+        if (error.graphQlErrors) {
+            const errMessage = error.graphQLErrors[0].message;
+            this.setState({message: "Login has failed: " + errMessage, error: true});
+        } else {
+            this.setState({message: "Unknown error" + error.message, error: true});
+        }
+    }
+
+    logoutCallback() {
+        console.log("Called logout callback");
+    }
+
     render() {
-        if (this.props.app.isUserAuthenticated()) {
-            return <div className="app-sessionView w3-container">
-                SessionView
+        if (this.props.isAuthenticated) {
+            return <div className="app-sessionView w3-container w3-padding-0">
+                <Online
+                    user={this.props.user}
+                    logoutCallback={this.logoutCallback.bind(this)}
+                />
             </div>
 
         } else {
-            return <div className="app-sessionView w3-container">
+            return <div className="app-sessionView w3-container w3-padding-0">
                 <Offline
                     message={this.state.message}
                     error={this.state.error}

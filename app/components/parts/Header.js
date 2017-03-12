@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * The part renders the header of the website
+ */
 class Header extends React.Component {
     render() {
         return <div className="app-header">

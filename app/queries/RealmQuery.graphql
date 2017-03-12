@@ -7,9 +7,21 @@
             crate { ...Lib }
         }
     }
+    session {
+        apiKey
+        expiresAt
+        user {
+            ...UserFragment
+        }
+    }
 }
 
 fragment Lib on Library {
     library
     version
+}
+
+fragment UserFragment on User {
+    id
+    name
 }

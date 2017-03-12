@@ -81,7 +81,7 @@ body {
     }
   }
 
-  .app-sessionView {
+  .app-sessionView .w3-row {
     padding: 2em;
     background-color: $bg-color3;
     color: $fg-color3;
@@ -97,5 +97,5 @@ body {
 }
 
 .d-message-error {
-  font-color: red;
+  color: red;
 }
