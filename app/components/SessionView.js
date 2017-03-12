@@ -62,7 +62,7 @@ class SessionView extends Component {
     }
 
     logoutCallback() {
-        console.log("Called logout callback");
+        this.props.setSession(null);
     }
 
     render() {

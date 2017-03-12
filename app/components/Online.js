@@ -21,7 +21,7 @@ class Online extends Component {
     }
 
     render() {
-        var content = <div>Empty</div>
+        let content = <div>Empty</div>
 
 
         if (this.state.dialog) {
@@ -44,7 +44,7 @@ class Online extends Component {
                 <Tool>Characters</Tool>
                 <Tool>Messages</Tool>
                 <Tool>Friendlist</Tool>
-                <Tool type="right">Logout</Tool>
+                <Tool type="right" onClick={this.props.logoutCallback}>Logout</Tool>
             </ToolBox>
 
             {content}

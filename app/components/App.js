@@ -25,7 +25,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            freshlyAuthenticated: false,
+            freshlyAuthenticated: null,
         }
     }
 
@@ -33,6 +33,8 @@ class App extends Component {
         // Check if freshly authenticated
         if (this.state.freshlyAuthenticated) {
             return true;
+        } else if (this.state.freshlyAuthenticated === false) {
+            return false;
         }
 
         // If not, check if session was loaded sucessfully
@@ -47,6 +49,8 @@ class App extends Component {
     getUser() {
         if (this.state.freshlyAuthenticated)  {
             return this.state.user;
+        } else if (this.state.freshlyAuthenticated === false) {
+            return null;
         }
 
         if (this.props.data.session.user !== null) {
@@ -57,13 +61,24 @@ class App extends Component {
     }
 
     setSession(session) {
-        // store token
-        localStorage.setItem("token", session["apiKey"]);
+        if (session) {
+            // login
+            // store token
+            localStorage.setItem("token", session["apiKey"]);
 
-        this.setState({
-            freshlyAuthenticated: true,
-            user: session["user"]
-        })
+            this.setState({
+                freshlyAuthenticated: true,
+                user: session["user"]
+            })
+        }  else {
+            // logout
+            localStorage.clear();
+
+            this.setState({
+                freshlyAuthenticated: false,
+                user: null
+            })
+        }
     }
 
     render() {
