@@ -1,0 +1,13 @@
+query getCharactersForUser($userId: String!) {
+    user(id: $userId) {
+        characters {
+            ...CharacterFragments
+        }
+    }
+}
+
+fragment CharacterFragments on Character {
+    id
+    name
+    displayName
+}

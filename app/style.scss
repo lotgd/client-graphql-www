@@ -5,6 +5,11 @@ $fg-color2: #DDDDDD;
 $bg-color3: #DDDDDD;
 $fg-color3: #333333;
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-size: 14px;
   background-color: $bg-color2;
@@ -85,6 +90,72 @@ body {
     padding: 2em;
     background-color: $bg-color3;
     color: $fg-color3;
+  }
+}
+
+.d-dialog {
+  .d-dialog-head {
+    a {
+      float: right;
+    }
+
+    h2 {
+      &::after {
+        clear: right;
+      }
+    }
+  }
+}
+
+.d-cardList {
+  .d-cardItem {
+    min-height: 5rem;
+    max-height: 5rem;
+
+    margin: 2em 0em;
+    display: flex;
+
+    img {
+      display: block;
+      flex-grow: 0;
+      z-index: 5;
+      align-items: center;
+
+      min-height: 5rem;
+      min-width: 5rem;
+      max-height: 5rem;
+      max-width: 5rem;
+
+      border: 1px solid black;
+      border-radius: 50%;
+
+      background-color: white;
+      vertical-align: center;
+
+      &:hover {
+        border: 2px solid green;
+      }
+    }
+
+    h3 {
+      display: block;
+      flex-grow: 1;
+      z-index: 0;
+      min-height: 4rem;
+      max-height: 4rem;
+
+      margin-left: -2.5rem;
+      padding-left: 5rem;
+      border: 1px solid black;
+
+      vertical-align: center;
+    }
+  }
+
+  .d-selected {
+    img, h3 {
+      border: 2px solid darkgoldenrod;
+    }
   }
 }
 

@@ -1,4 +1,90 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
+import {graphql} from 'react-apollo';
+
+import Message from './parts/Message';
+
+import CharacterQuery from './../queries/CharacterQuery.graphql';
+
+class CharacterEntry extends Component {
+    static PropType = {
+        character: PropTypes.object.isRequired,
+        onActivation: PropTypes.func.isRequired,
+        selected: PropTypes.bool.isRequired
+    };
+
+    render() {
+        let classes = "d-cardItem";
+        if (this.props.selected) {
+            classes += " d-selected";
+        }
+
+        return <div className={classes}>
+            <img src="" onClick={this.props.onActivation} />
+            <h3>{this.props.character.displayName}</h3>
+        </div>
+    }
+}
+
+@graphql(CharacterQuery, {
+    options: (ownProps) => ({
+        variables: {
+            userId: ownProps.userId
+        }
+    })
+})
+class CharacterSelect extends Component {
+    static PropType = {
+        userId: PropTypes.string.isRequired,
+        data: PropTypes.shape({
+            loading: PropTypes.bool,
+            error: PropTypes.object,
+            user: PropTypes.object
+        }).isRequired,
+        characterSelect: PropTypes.func.isRequired,
+        selectedCharacter: PropTypes.string
+    };
+
+    static defaultProps = {
+    }
+
+    onActivation(characterId) {
+        this.props.characterSelect(characterId);
+    }
+
+    render() {
+        if (this.props.data.loading) {
+            return <Message message="Loading list of characters" />
+        }
+
+        if (this.props.data.error) {
+            console.log(this.props.data.error);
+            return <Message message="An error occured during character loading" error={true} />
+        }
+
+        const characters = this.props.data.user.characters;
+
+        return <div className="d-cardList">
+            {characters.length > 0 && characters.map((character) => {
+                let selected = false;
+
+                if (this.props.selectedCharacter === character.id) {
+                    selected = true;
+                }
+
+                return <CharacterEntry
+                    key={character.id}
+                    character={character}
+                    onActivation={this.onActivation.bind(this, character.id)}
+                    selected={selected}
+                />;
+            })}
+        </div>
+    }
+}
+
+export default CharacterSelect;
+
+/*import React from 'react';
 import Relay from 'react-relay';
 
 import CreateCharacterMutation from '../mutations/CreateCharacterMutation';
@@ -7,7 +93,7 @@ import CreateCharacterMutation from '../mutations/CreateCharacterMutation';
  * The button to display or hide the character creation form.
  * @param {type} props
  * @returns {Function|String}
- */
+ * /
 function CreationButton(props) {
     const content = props.toggle ? "^" : "+";
 
@@ -20,7 +106,7 @@ function CreationButton(props) {
  * A single character entry in the list of characters.
  * @param {type} props
  * @returns {Function|String}
- */
+ * /
 function CharacterEntry(props) {
     return (
         <div className="daenerys-list-item-widget">
@@ -34,7 +120,7 @@ var CreationForm = React.createClass({
     /**
      * Returns the initial state of this react container.
      * @returns {CharacterSelectAnonym$1.getInitialState.CharacterSelectAnonym$2}
-     */
+     * /
     getInitialState: function() {
         return {
             characterName: '',
@@ -46,7 +132,7 @@ var CreationForm = React.createClass({
      * @param {string} field
      * @param {event} e
      * @returns {undefined}
-     */
+     * /
     handleChange: function(field, e) {
         var nextState = {};
         nextState[field] = e.target.value;
@@ -60,8 +146,8 @@ var CreationForm = React.createClass({
 
     /**
      * Rendering function for the character creation form.
-     * @returns {String}
-     */
+     *  @returns {String}
+     * /
     render: function() {
         return (
             <div className="w3-container">
@@ -85,7 +171,7 @@ var CharacterSelect = React.createClass({
      * @ToDo: Set the current character globally.
      * @param {type} characterId
      * @returns {undefined}
-     */
+     * /
     activateCharacter: function(characterId) {
         console.log("Activating character with id " + characterId);
         this.props.parent.setActiveCharacter(characterId);
@@ -94,7 +180,7 @@ var CharacterSelect = React.createClass({
     /**
      * Toggles the creation form button.
      * @returns {undefined}
-     */
+     * /
     showCreationForm: function() {
         this.setState({showCreationForm: !this.state.showCreationForm});
     },
@@ -102,7 +188,7 @@ var CharacterSelect = React.createClass({
     /**
      * Initial state.
      * @returns {CharacterSelectAnonym$3.getInitialState.CharacterSelectAnonym$5}
-     */
+     * /
     getInitialState: function() {
         return {
             showCreationForm: false,
@@ -115,7 +201,7 @@ var CharacterSelect = React.createClass({
      * @param {type} creationForm
      * @param {type} characterName
      * @returns {undefined}
-     */
+     * /
     onCharacterCreation: function(creationForm, characterName) {
         this.props.relay.commitUpdate(
             new CreateCharacterMutation({
@@ -135,7 +221,7 @@ var CharacterSelect = React.createClass({
      * @param {type} creationForm
      * @param {type} characterName
      * @returns {undefined}
-     */
+     * /
     onCharacterCreationError: function(creationForm, characterName) {
         this.setState({
             errormessage: "The character with the name " + characterName + " already exists",
@@ -150,7 +236,7 @@ var CharacterSelect = React.createClass({
      * @param {type} creationForm
      * @param {type} characterName
      * @returns {undefined}
-     */
+     * /
     onCharacterCreationSuccess: function(creationForm, characterName) {
         creationForm.setState(creationForm.getInitialState());
         this.setState({
@@ -164,7 +250,7 @@ var CharacterSelect = React.createClass({
     /**
      * Render information.
      * @returns {String|Boolean}
-     */
+     * /
     render: function() {
         var showCreationForm = false;
         var characterList = "";
@@ -216,4 +302,4 @@ export default Relay.createContainer(CharacterSelect, {
     fragments: {
     },
     shouldComponentUpdate: () => true,
-});
+});*/
