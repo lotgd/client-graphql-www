@@ -5,11 +5,9 @@ import Form from './../../src/Form';
 
 class Offline extends React.Component {
     onSubmit(type, state) {
-        if (type === "classic") {
-            // Classic login
-        } else {
-            // Non-classic login
-        }
+        state["type"] = type;
+
+        this.props.loginCallback(state);
     }
 
     render() {

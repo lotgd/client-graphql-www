@@ -6,11 +6,19 @@ class SessionView extends React.Component {
     constructor(props) {
         super(props);
 
-        this.logIn.bind(this)
+        this.state = {
+            message: null
+        };
     }
 
-    logIn(a) {
-        console.log(a);
+    loginCallback(data) {
+        this.setState({"message": "Login in process..."})
+
+        if (data["type"] === "classic") {
+            console.log("Attempt classic login");
+        } else {
+            console.log("Attempt social login");
+        }
     }
 
     render() {
@@ -22,7 +30,8 @@ class SessionView extends React.Component {
         } else {
             return <div className="app-sessionView w3-container">
                 <Offline
-                    loginCallback={this.logIn}
+                    message={this.state.message}
+                    loginCallback={this.loginCallback.bind(this)}
                 />
             </div>
         }
