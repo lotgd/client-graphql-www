@@ -89,7 +89,11 @@ body {
 }
 
 .d-message {
+  font-style: italic;
 
+  &:after {
+    content: " ";
+  }
 }
 
 .d-message-error {

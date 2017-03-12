@@ -19,7 +19,8 @@ class Offline extends React.Component {
         const middle = <div className="d-loginPrompt">
             <h2>Login Form</h2>
 
-            {this.props.message !== null && <p className="message">{this.props.message}</p>}
+            {this.props.error === true && <p className="d-message-error d-message">{this.props.message}</p>}
+            {this.props.error === false && <p className="d-message">{this.props.message}</p>}
 
             <Form
                 fields={form}

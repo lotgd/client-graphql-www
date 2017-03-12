@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {graphql} from 'react-apollo';
-import RealmQuery from './../queries/RealmQuery.graphql';
 
 import Header from './parts/Header.js';
 import Footer from './parts/Footer.js';
 import SessionView from './SessionView.js';
+
+import RealmQuery from './../queries/RealmQuery.graphql';
 
 @graphql(RealmQuery)
 class App extends Component {

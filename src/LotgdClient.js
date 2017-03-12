@@ -24,7 +24,8 @@ networkInterface.use([{
 }]);
 
 const LotgdClient = new ApolloClient({
-    networkInterface,
+    networkInterface: networkInterface,
+    dataIdFromObject: o => o.id
 });
 
 export default LotgdClient;
