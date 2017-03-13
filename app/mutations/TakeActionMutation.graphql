@@ -1,0 +1,18 @@
+mutation takeActionMutation($input: TakeActionInput!) {
+    takeAction(input: $input) {
+        viewpoint {
+            title,
+            description,
+            template,
+            actionGroups {
+                id,
+                title,
+                sortKey,
+                actions {
+                    id,
+                    title,
+                }
+            }
+        }
+    }
+}

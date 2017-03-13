@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
 import CharacterSelect from './CharacterSelect';
+import Viewpoint from './Viewpoint';
 import Dialog from './parts/Dialog';
-import ThreeColumnLayout from './parts/ThreeColumnLayout';
 import {ToolBox, Tool} from './parts/ToolBox'
 
 class Online extends Component {
@@ -30,6 +30,7 @@ class Online extends Component {
 
     setCharacterId(id) {
         this.setState({characterId: id, dialog: false});
+        localStorage.setItem("characterId", id);
     }
 
     openCharacterDialog() {
@@ -71,17 +72,11 @@ class Online extends Component {
             }
         } else if (this.getCharacterId()) {
             // character id found
-            const middle = <div>Viewpoint</div>;
-            const left = <div>Actions</div>;
-            const right = <div>CharStats for {this.state.characterId}</div>;
-
-            content = <ThreeColumnLayout
-                left={left}
-                middle={middle}
-                right={right}
-            />;
+            content = <Viewpoint
+                characterId={this.getCharacterId()}
+                />;
         } else {
-            content = this.getCharacterDialog()
+            content = this.getCharacterDialog();
         }
 
 

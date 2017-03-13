@@ -1,0 +1,17 @@
+query getViewpointForCharacter($characterId: String!) {
+    viewpoint(characterId: $characterId) {
+        title
+        description
+        template
+        actionGroups {
+            id
+            title
+            sortKey
+            actions {
+                id
+                title
+            }
+        }
+        attachements
+    }
+}
