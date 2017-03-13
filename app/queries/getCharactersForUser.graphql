@@ -1,5 +1,6 @@
 query getCharactersForUser($userId: String!) {
     user(id: $userId) {
+        id
         characters {
             ...CharacterFragments
         }

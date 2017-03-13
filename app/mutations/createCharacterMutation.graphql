@@ -1,0 +1,12 @@
+mutation createCharacterMutation($input: CreateCharacterInput!) {
+    createCharacter(input: $input) {
+        user {
+            id
+        },
+        character {
+            id,
+            name,
+            displayName
+        }
+    }
+}
