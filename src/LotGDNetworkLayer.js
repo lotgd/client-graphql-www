@@ -8,7 +8,7 @@ export default class LoGDNetworkLayer extends DefaultNetworkLayer {
 
         if (token !== false) {
             this._init.headers = {
-                "token": token
+                "X-LotGD-Auth-Token": token
             };
         } else {
             this._init.headers = {};

@@ -8,7 +8,7 @@ query RealmQuery {
         }
     }
     session {
-        apiKey
+        authToken
         expiresAt
         user {
             ...UserFragment

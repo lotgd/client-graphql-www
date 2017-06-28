@@ -64,7 +64,7 @@ class App extends Component {
         if (session) {
             // login
             // store token
-            localStorage.setItem("token", session["apiKey"]);
+            localStorage.setItem("token", session["authToken"]);
 
             this.setState({
                 freshlyAuthenticated: true,
