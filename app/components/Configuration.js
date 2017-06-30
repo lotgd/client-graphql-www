@@ -13,7 +13,9 @@ class Configuration extends React.Component {
     }
 }
 
-export default Relay.createContainer(Configuration, {
+export default Configuration;
+
+/*export default Relay.createContainer(Configuration, {
     fragments: {
         Lib: () => Relay.QL`
             fragment on Library {
@@ -22,4 +24,4 @@ export default Relay.createContainer(Configuration, {
             }
         `,
     },
-});
+});*/

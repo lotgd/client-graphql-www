@@ -1,6 +1,6 @@
 {
   "name": "lotgd_crate_www_jsclient",
-  "version": "0.1.0",
+  "version": "v0.3.1",
   "scripts": {
     "build": "./node_modules/.bin/webpack app/main.js -o web/bundle.js && ./node_modules/.bin/node-sass --output-style compressed app/style.scss > web/style.css",
     "build-sass": "./node_modules/.bin/node-sass --output-style compressed app/style.scss > web/style.css",
@@ -9,9 +9,9 @@
 
   "dependencies": {
     "babel-polyfill": "^6.9",
-    "react": "^15.4",
-    "react-dom": "^15.4",
-    "react-relay": "^0.10",
+    "prop-types": "^15.5",
+    "react": "^15.5",
+    "react-dom": "^15.5",
     "react-router": "^3.0",
     "react-apollo": "^0.13",
     "redux": "*",
