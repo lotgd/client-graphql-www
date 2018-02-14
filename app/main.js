@@ -12,7 +12,6 @@ ReactDOM.render(
     </ApolloProvider>,
     document.getElementById("root")
 );
-
 /*
 import React from 'react';
 import ReactDOM from 'react-dom';

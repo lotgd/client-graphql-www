@@ -13,7 +13,7 @@ class Dialog extends Component {
     static defaultProps = {
         onClose: null,
         displayed: false,
-    }
+    };
 
     render() {
         if (!this.props.displayed) {
@@ -34,7 +34,7 @@ class Dialog extends Component {
         return <ThreeColumnLayout
             middle={middle}
         />;
-    }
+    };
 }
 
 export default Dialog;

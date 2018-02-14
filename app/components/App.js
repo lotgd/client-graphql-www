@@ -19,7 +19,7 @@ class App extends Component {
             loading: PropTypes.bool.isRequired,
             realm: PropTypes.object,
             session: PropTypes.object,
-        }).isRequired,
+        }).isRequired
     };
 
     constructor(props) {
